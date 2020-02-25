@@ -1,0 +1,99 @@
+.active {
+  color: #f14a58;
+}
+
+.filters-off {
+  display: none;
+}
+
+.filters {
+  display: block;
+}
+.filters__wrap {
+  display: flex;
+}
+.filters .filter {
+  position: relative;
+  flex: 1;
+  height: 60px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  cursor: pointer;
+}
+.filters .filter--active {
+  background-color: #f7f7f7;
+}
+.filters .filter:before {
+  content: "";
+  position: absolute;
+  display: none;
+  height: 100%;
+  width: 100%;
+  padding: 0 0px;
+  border-left: 1px solid #e5e5e5;
+  border-right: 1px solid #e5e5e5;
+  box-sizing: border-box;
+}
+.filters .filter__drop {
+  display: none;
+  position: absolute;
+  top: 60px;
+  width: 100%;
+}
+.filters .filter__drop .item {
+  display: flex;
+  align-items: center;
+  height: 30px;
+  padding-left: 20px;
+}
+.filters .filter__drop .item:hover {
+  background-color: #f7f7f7;
+  color: #f14a58;
+}
+.filters .filter:hover .filter__drop {
+  display: block;
+  box-shadow: 0 3px 5px rgba(0, 0, 0, 0.1);
+  border: 1px solid #e5e5e5;
+  background-color: #ffffff;
+  box-sizing: border-box;
+}
+.filters .filter:hover {
+  box-shadow: 0 3px 5px rgba(0, 0, 0, 0.1);
+  box-sizing: border-box;
+}
+.filters .filter:hover .filters .filter__drop,
+.filters .filter:hover::before {
+  display: block;
+}
+.filters .filter::after {
+  content: "▼";
+  position: absolute;
+  right: 20px;
+  font-size: 6px;
+}
+.filters .filter__style {
+  display: none;
+}
+.filters .filter__style--active {
+  display: block;
+  color: #f14a58;
+  font-family: "Open Sans";
+  font-size: 16px;
+  font-weight: 700;
+  letter-spacing: 0.48px;
+  padding-left: 20px;
+}
+.filters .filter__name {
+  font-family: "Open Sans";
+  font-size: 16px;
+  font-weight: 700;
+  letter-spacing: 0.48px;
+  padding-left: 20px;
+}
+.filters .filter__name--active {
+  font-family: "Roboto";
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.36px;
+}

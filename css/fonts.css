@@ -1,0 +1,53 @@
+@font-face {
+  font-family: "Roboto";
+  src: url("../fonts/roboto/Roboto.eot");
+  src: local("☺"), url("../fonts/roboto/Roboto.woff") format("woff"),
+    url("../fonts/roboto/Roboto.ttf") format("truetype"),
+    url("../fonts/roboto/Roboto.svg") format("svg");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Roboto";
+  src: url("../fonts/roboto/Roboto-Bold.eot");
+  src: url("../fonts/roboto/Roboto-Bold.eot?#iefix") format("embedded-opentype"),
+    url("../fonts/roboto/Roboto-Bold.woff") format("woff"),
+    url("../fonts/roboto/Roboto-Bold.ttf") format("truetype");
+  font-weight: 700;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Open Sans";
+  src: url("../fonts/open_sans/OpenSans-Regular.eot");
+  src: url("../fonts/open_sans/OpenSans-Regular.eot?#iefix")
+      format("embedded-opentype"),
+    url("../fonts/open_sans/OpenSans-Regular.woff") format("woff"),
+    url("../fonts/open_sans/OpenSans-Regular.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Open Sans";
+  src: url("../fonts/open_sans/OpenSans-Bold.eot");
+  src: url("../fonts/open_sans/OpenSans-Bold.eot?#iefix")
+      format("embedded-opentype"),
+    url("../fonts/open_sans/OpenSans-Bold.woff") format("woff"),
+    url("../fonts/open_sans/OpenSans-Bold.ttf") format("truetype");
+  font-weight: 700;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Times New Roman";
+  src: url("../fonts/times_new_roman/TimesNewRomanPS-ItalicMT.eot");
+  src: url("../fonts/times_new_roman/TimesNewRomanPS-ItalicMT.eot?#iefix")
+      format("embedded-opentype"),
+    url("../fonts/times_new_roman/TimesNewRomanPS-ItalicMT.woff") format("woff"),
+    url("../fonts/times_new_roman/TimesNewRomanPS-ItalicMT.ttf")
+      format("truetype");
+  font-weight: normal;
+  font-style: italic;
+}
