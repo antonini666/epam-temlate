@@ -122,15 +122,9 @@
   letter-spacing: 0.36px;
 }
 
-.main__items {
-  display: -webkit-box;
-  display: -ms-flexbox;
+.main__block {
   display: flex;
-  -webkit-box-pack: justify;
-  -ms-flex-pack: justify;
-  justify-content: space-between;
-  -ms-flex-wrap: wrap;
-  flex-wrap: wrap;
+  justify-content: space-around;
 }
 
 .sale-notice {
