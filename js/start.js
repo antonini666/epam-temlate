@@ -51,7 +51,14 @@ function itemRender(first, second) {
           <div class="product-item__title">${item.title}</div>
         </div>
       </a>
-      <div class="product-item__price">£${item.price}</div>
+      <div class="price__wrap">
+      ${
+        item.price === item.discountedPrice || item.discountedPrice === null
+          ? `<div class="product-item__price" data-price="${item.price.toFixed(2)}">£${item.price.toFixed(2)}</div>`
+          : `<div class="product-item__price-old" data-price="${item.price.toFixed(2)}">£${item.price.toFixed(2)}</div>
+        <div class="product-item__price" data-price="${item.discountedPrice.toFixed(2)}">£${item.discountedPrice.toFixed(2)}</div>`
+      } 
+      </div>
     </div>`;
 
     itemsWrap.innerHTML += template;
@@ -92,38 +99,120 @@ function seacrhBestOffer(arr, recordArr) {
 seacrhBestOffer(bestOfferLeftId, bestOfferArrayLeft);
 seacrhBestOffer(bestOfferRightId, bestOfferArrayRight);
 
-const itemsContainer = document.querySelectorAll(".items__container");
+//////////////////////////////////////////////////////////////
 
-const renderOfferItems = (number, arr) => {
-  for (let j = 0; j < arr.length; j++) {
-    itemsContainer[
-      number
-    ].innerHTML += `<div class="best-offer__item product-item ${
-      arr[j].hasNew ? "product-item--new" : ""
-    } ${j !== 0 ? "best-offer__item--hide" : ""}">
-      <button class="product-item__btn-up btn-arrow">
-        <img class="btn-up" src="img/btn-sort.svg" alt="">
-      </button>
+const productSliderWrap = document.querySelectorAll(".product__slider");
+const oldCost = document.querySelector(".total-cost__old-cost");
+const newCost = document.querySelector(".total-cost__new-cost");
+
+console.log(productSliderWrap);
+
+const renderOfferItems = (arr, num, current) => {
+  let currentSlide = 0;
+  let number = !isNaN(num);
+  let currentOldPrice = 0;
+  for (let i = 0; i < arr.length; i++) {
+    let newNum = number ? num : i;
+    productSliderWrap[newNum].innerHTML = "";
+    for (let j = 0; j < arr[newNum].length; j++) {
+      productSliderWrap[newNum].innerHTML += `
+      <div class="product__slider-item product-item ${
+        arr[newNum][j].hasNew ? "product-item--new" : ""
+      } ${
+        j !== (!isNaN(current) ? current : currentSlide)
+          ? "product__slider-item--hide"
+          : ""
+      }">
       <a href="item.html">
         <div class="product-item__image">
-          <img src="${arr[j].thumbnail}" alt="${arr[j].title}">
+          <img src="${arr[newNum][j].thumbnail}" alt="${arr[newNum][j].title}">
         </div>
         <div class="product-item__desc">
-          <div class="product-item__title">${arr[j].title}</div>
+          <div class="product-item__title">${arr[newNum][j].title}</div>
         </div>
       </a>
-      <div class="product-item__price" data-price="${arr[j].price}">£${arr[j].price}</div>
-      <button class="product-item__btn-down btn-arrow">
-        <img class="btn-down" src="img/btn-sort.svg" alt="">
-      </button>
+      <div class='price__wrap'>
+        ${
+          arr[newNum][j].price === arr[newNum][j].discountedPrice ||
+          arr[newNum][j].discountedPrice === null
+            ? `<div class="product-item__price" data-price="${arr[newNum][
+                j
+              ].price.toFixed(2)}">£${arr[newNum][j].price.toFixed(2)}</div>`
+            : `<div class="product-item__price-old" data-price="${arr[newNum][
+                j
+              ].price.toFixed(2)}">£${arr[newNum][j].price.toFixed(2)}</div>
+          <div class="product-item__price" data-price="${arr[newNum][
+            j
+          ].discountedPrice.toFixed(2)}">£${arr[newNum][
+                j
+              ].discountedPrice.toFixed(2)}</div>`
+        }   
+      </div>
+      
     </div>`;
+    }
+
+    let productItem = productSliderWrap[i].querySelectorAll(
+      ".product__slider-item"
+    );
+
+    for (let d = 0; d < productItem.length; d++) {
+      if (!productItem[d].classList.contains("product__slider-item--hide")) {
+        currentOldPrice += +productItem[d]
+          .querySelector(".product-item__price")
+          .innerHTML.slice(1);
+      }
+    }
+  }
+
+  oldCost.innerHTML = `£${currentOldPrice.toFixed(2)}`;
+  newCost.innerHTML = `£${(currentOldPrice - bestOffer.discount).toFixed(2)}`;
+};
+
+renderOfferItems([bestOfferArrayLeft, bestOfferArrayRight]);
+
+let currArr = [0, 0];
+
+const slider = () => {
+  const buttonSilderUp = document.querySelectorAll(".product-item__btn-up");
+  const buttonSilderDown = document.querySelectorAll(".product-item__btn-down");
+
+  for (let i = 0; i < productSliderWrap.length; i++) {
+    productSliderWrap[i].innerHTML === "";
+    let slides = productSliderWrap[i].querySelectorAll(".product__slider-item");
+
+    function nextSlide() {
+      goToSlide(currArr[i] + 1);
+    }
+
+    function previousSlide() {
+      goToSlide(currArr[i] - 1);
+    }
+
+    function goToSlide(n) {
+      currArr[i] = (n + slides.length) % slides.length;
+    }
+
+    buttonSilderUp[i].addEventListener("click", () => {
+      let number = i;
+      nextSlide();
+      renderOfferItems(
+        [bestOfferArrayLeft, bestOfferArrayRight],
+        number,
+        currArr[i]
+      );
+    });
+
+    buttonSilderDown[i].addEventListener("click", () => {
+      let number = i;
+      previousSlide();
+      renderOfferItems(
+        [bestOfferArrayLeft, bestOfferArrayRight],
+        number,
+        currArr[i]
+      );
+    });
   }
 };
 
-renderOfferItems(0, bestOfferArrayLeft);
-renderOfferItems(1, bestOfferArrayRight);
-
-const upButton = document.querySelectorAll(".product-item__btn-up");
-const downButton = document.querySelectorAll(".product-item__btn-down");
-
-
+slider();
