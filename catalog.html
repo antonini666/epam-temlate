@@ -10,8 +10,8 @@
   </head>
 
   <body>
-    <div class="container">
-      <header class="header">
+    <header class="header">
+      <div class="container">
         <div class="header__top">
           <a href="start.html" class="logo">
             Template
@@ -28,10 +28,8 @@
               <span></span>
             </div>
           </div>
-
-
         </div>
-        <nav class=" header__navigation">
+        <nav class="header__navigation">
           <ul class="navigation">
             <li class="item"><a href="#">Women</a></li>
             <li class="item"><a href="#">Men</a></li>
@@ -45,18 +43,19 @@
           <div class="header__search">
             <input id="search" type="text" placeholder="Style Name">
             <label for="search"><img src="img/ico_search.svg" alt="search"></label>
+            <div class="border"></div>
           </div>
         </nav>
-      </header>
-    </div>
-    <hr>
+      </div>
+      <hr>
+    </header>
 
     <div class="filters-off">
       <div class="container">
         <div class="filters__wrap">
           <div class="filter filter-fasion">
             <span class="filter__name">Fashion</span>
-            <h3 class="filter__style">Casual style</h3>
+            <h3 class="filter__style">Fashion</h3>
             <ul class="filter__drop">
               <li class="item">Not selected</li>
               <li class="item">Nail the 90s</li>
@@ -69,7 +68,7 @@
           </div>
           <div class="filter filter-product">
             <span class="filter__name">Product type</span>
-            <h3 class="filter__style">Fashion</h3>
+            <h3 class="filter__style">Product type</h3>
             <ul class="filter__drop">
               <li class="item">Not selected</li>
               <li class="item">Coats & Jackets</li>
@@ -79,7 +78,7 @@
           </div>
           <div class="filter filter-color">
             <span class="filter__name">Color</span>
-            <h3 class="filter__style">Fashion</h3>
+            <h3 class="filter__style">Color</h3>
             <ul class="filter__drop">
               <li class="item">Not selected</li>
               <li class="item">Black</li>
@@ -91,7 +90,7 @@
           </div>
           <div class="filter filter-brand">
             <span class="filter__name">Brand</span>
-            <h3 class="filter__style">Fashion</h3>
+            <h3 class="filter__style">Brand</h3>
             <ul class="filter__drop">
               <li class="item">Not selected</li>
               <li class="item">Chi Chi London</li>
@@ -103,7 +102,7 @@
           </div>
           <div class="filter filter-size">
             <span class="filter__name">Size</span>
-            <h3 class="filter__style">Fashion</h3>
+            <h3 class="filter__style">Size</h3>
             <ul class="filter__drop">
               <li class="item">Not selected</li>
               <li class="item">UK 2</li>
@@ -117,7 +116,7 @@
           </div>
           <div class="filter filter-price">
             <span class="filter__name">Price range</span>
-            <h3 class="filter__style">Fashion</h3>
+            <h3 class="filter__style">Price range</h3>
             <ul class="filter__drop">
               <li class="item">Not selected</li>
               <li class="item">To £99s</li>
@@ -128,15 +127,143 @@
         </div>
       </div>
       <hr>
+
     </div>
 
     <section class="main">
       <div class="container">
         <div class="main__items">
-
         </div>
+        <button class="main__items-btn main-btn">Show More</button>
       </div>
     </section>
+
+    <section class="banners">
+      <hr>
+
+      <div class="banners__container">
+        <div class="banners__item banners__item--big">
+          <a href="item.html">
+            <img class="banners__item-image" src="img/adidas-blue.png" alt="image">
+            <div class="banners__item-info">
+              <h3 class="banners__item-name">Adidas Blue</h3>
+              <p class="banners__item-sale">For men</p>
+            </div>
+          </a>
+        </div>
+        <div class="banners__item">
+          <a href="item.html">
+            <img class="banners__item-image" src="img/repair-patches.png" alt="image">
+            <div class="banners__item-info">
+              <h3 class="banners__item-name">Repair Patches</h3>
+              <p class="banners__item-price">£ 150.50</p>
+            </div>
+          </a>
+        </div>
+        <div class="banners__item">
+          <a href="item.html">
+            <img class="banners__item-image" src="img/sale-bag.png" alt="image">
+            <div class="banners__item-info banners__item-info--red">
+              <h3 class="banners__item-name">Sale</h3>
+              <p class="banners__item-sale">-70%</p>
+            </div>
+          </a>
+        </div>
+      </div>
+      <hr>
+    </section>
+
+    <footer class="footer">
+      <div class="container">
+        <div class="footer__content">
+          <div class="footer__links">
+            <div class="footer__links-wrap">
+              <div class="footer__lists">
+                <div class="footer__lists-title footer-title">Quick Links</div>
+                <ul class="footer__list">
+                  <li class="footer__item "><a href="#">Store locator</a></li>
+                  <li class="footer__item "><a href="#">Gift cards</a></li>
+                  <li class="footer__item "><a href="#">Size guide</a></li>
+                  <li class="footer__item "><a href="#">About us</a></li>
+                  <li class="footer__item "><a href="#">Support</a></li>
+                </ul>
+              </div>
+              <div class="footer__lists">
+                <div class="footer__lists-title footer-title">Customer Care</div>
+                <ul class="footer__list">
+                  <li class="footer__item "><a href="#">Customer service</a></li>
+                  <li class="footer__item "><a href="#">Track my order</a></li>
+                  <li class="footer__item "><a href="#">Return policy</a></li>
+                  <li class="footer__item "><a href="#">Shipping & delivery</a></li>
+                  <li class="footer__item "><a href="#">Contact us</a></li>
+                  <li class="footer__item "><a href="#">Careers</a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <div class="footer__contacts">
+            <div class="footer__contacts-wrap">
+              <div class="footer__block">
+                <div class="footer__block-title footer-title">Questions</div>
+                <div class="footer__block-desc footer-desc">
+                  <img src="img/twi_ico.svg" alt="">
+                  Tweet us <span>@template</span>
+                </div>
+              </div>
+              <div class="footer__block">
+                <div class="footer__block-title footer-title">Order by phone</div>
+                <div class="footer__block-desc footer-desc">8-800-409-47-12</div>
+              </div>
+            </div>
+            <div class="footer__delivery-info">We have our own delivery service which operates in 23 major European
+              cities. Delivery time - 3-5 days.
+            </div>
+            <div class="footer__social">
+              <a href="#"><img src="img/fac_ico.svg" alt="fac_ico"></a>
+              <a href="#"><img src="img/twi_color_icon.svg" alt="twi_color_icon"></a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+      <hr>
+
+      <div class="container">
+        <div class="footer__hide">
+          <ul class="footer__hide-info">
+            <li class="footer__hide-item"><a href="#">Legal notice</a></li>
+            <li class="footer__hide-item"><a href="#">Privacy policy </a></li>
+            <li class="footer__hide-item"><a href="#">Site map</a></li>
+          </ul>
+          <div class="footer__hide-social">
+            <a href="#"><img src="img/fac_ico.svg" alt="fac_ico"></a>
+            <a href="#"><img src="img/twi_color_icon.svg" alt="twi_color_icon"></a>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="container">
+        <div class="footer__down">
+          <div class="footer__copiring">
+            © 2010–2015, The Template Group inc.
+          </div>
+          <div class="footer__share">
+            Share <span>1 437</span>
+          </div>
+          <ul class="footer__info">
+            <li class="footer__info-item"><a href="#">Legal notice</a></li>
+            <li class="footer__info-item"><a href="#">Privacy policy </a></li>
+            <li class="footer__info-item"><a href="#">Site map</a></li>
+          </ul>
+        </div>
+      </div>
+
+
+
+    </footer>
 
     <script src="data/catalog.js"></script>
     <script src="js/common.js"></script>

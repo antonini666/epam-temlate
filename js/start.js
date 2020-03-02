@@ -54,9 +54,15 @@ function itemRender(first, second) {
       <div class="price__wrap">
       ${
         item.price === item.discountedPrice || item.discountedPrice === null
-          ? `<div class="product-item__price" data-price="${item.price.toFixed(2)}">£${item.price.toFixed(2)}</div>`
-          : `<div class="product-item__price-old" data-price="${item.price.toFixed(2)}">£${item.price.toFixed(2)}</div>
-        <div class="product-item__price" data-price="${item.discountedPrice.toFixed(2)}">£${item.discountedPrice.toFixed(2)}</div>`
+          ? `<div class="product-item__price" data-price="${item.price.toFixed(
+              2
+            )}">£${item.price.toFixed(2)}</div>`
+          : `<div class="product-item__price-old" data-price="${item.price.toFixed(
+              2
+            )}">£${item.price.toFixed(2)}</div>
+        <div class="product-item__price" data-price="${item.discountedPrice.toFixed(
+          2
+        )}">£${item.discountedPrice.toFixed(2)}</div>`
       } 
       </div>
     </div>`;
@@ -105,8 +111,6 @@ const productSliderWrap = document.querySelectorAll(".product__slider");
 const oldCost = document.querySelector(".total-cost__old-cost");
 const newCost = document.querySelector(".total-cost__new-cost");
 
-console.log(productSliderWrap);
-
 const renderOfferItems = (arr, num, current) => {
   let currentSlide = 0;
   let number = !isNaN(num);
@@ -115,9 +119,10 @@ const renderOfferItems = (arr, num, current) => {
     let newNum = number ? num : i;
     productSliderWrap[newNum].innerHTML = "";
     for (let j = 0; j < arr[newNum].length; j++) {
+      let obj = arr[newNum][j];
       productSliderWrap[newNum].innerHTML += `
       <div class="product__slider-item product-item ${
-        arr[newNum][j].hasNew ? "product-item--new" : ""
+        obj.hasNew ? "product-item--new" : ""
       } ${
         j !== (!isNaN(current) ? current : currentSlide)
           ? "product__slider-item--hide"
@@ -125,27 +130,24 @@ const renderOfferItems = (arr, num, current) => {
       }">
       <a href="item.html">
         <div class="product-item__image">
-          <img src="${arr[newNum][j].thumbnail}" alt="${arr[newNum][j].title}">
+          <img src="${obj.thumbnail}" alt="${obj.title}">
         </div>
         <div class="product-item__desc">
-          <div class="product-item__title">${arr[newNum][j].title}</div>
+          <div class="product-item__title">${obj.title}</div>
         </div>
       </a>
       <div class='price__wrap'>
         ${
-          arr[newNum][j].price === arr[newNum][j].discountedPrice ||
-          arr[newNum][j].discountedPrice === null
-            ? `<div class="product-item__price" data-price="${arr[newNum][
-                j
-              ].price.toFixed(2)}">£${arr[newNum][j].price.toFixed(2)}</div>`
-            : `<div class="product-item__price-old" data-price="${arr[newNum][
-                j
-              ].price.toFixed(2)}">£${arr[newNum][j].price.toFixed(2)}</div>
-          <div class="product-item__price" data-price="${arr[newNum][
-            j
-          ].discountedPrice.toFixed(2)}">£${arr[newNum][
-                j
-              ].discountedPrice.toFixed(2)}</div>`
+          obj.price === obj.discountedPrice || obj.discountedPrice === null
+            ? `<div class="product-item__price" data-price="${obj.price.toFixed(
+                2
+              )}">£${obj.price.toFixed(2)}</div>`
+            : `<div class="product-item__price-old" data-price="${obj.price.toFixed(
+                2
+              )}">£${obj.price.toFixed(2)}</div>
+          <div class="product-item__price" data-price="${obj.discountedPrice.toFixed(
+            2
+          )}">£${obj.discountedPrice.toFixed(2)}</div>`
         }   
       </div>
       

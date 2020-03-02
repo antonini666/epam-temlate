@@ -16,11 +16,14 @@ const mqls = [
 function mediaqueryresponse() {
   if (mqls[0].matches) {
     itemRender(0, 2);
+    filtersOpen();
   } else if (mqls[1].matches) {
     itemRender(0, 3);
+    filtersOpen();
   }
   if (!mqls[0].matches && !mqls[1].matches) {
     itemRender(0, 4);
+    filtersOpen();
   }
 }
 
@@ -29,11 +32,8 @@ for (let i = 0; i < mqls.length; i++) {
   mqls[i].addListener(mediaqueryresponse);
 }
 
-function itemRender(first, second) {
-  itemsWrap.innerHTML = "";
-
-  itemCatalog.slice(first, second).forEach((item, id) => {
-    let template = `
+function templates(item) {
+  return `
     <div class="main__item product-item ${
       item.hasNew ? "product-item--new" : ""
     }">
@@ -48,44 +48,34 @@ function itemRender(first, second) {
       <div class="price__wrap">
       ${
         item.price === item.discountedPrice || item.discountedPrice === null
-          ? `<div class="product-item__price" data-price="${item.price}">£${item.price}</div>`
-          : `<div class="product-item__price-old" data-price="${item.price}">£${item.price}</div>
-        <div class="product-item__price" data-price="${item.discountedPrice}">£${item.discountedPrice}</div>`
+          ? `<div class="product-item__price" data-price="${item.price.toFixed(
+              2
+            )}">£${item.price.toFixed(2)}</div>`
+          : `<div class="product-item__price-old" data-price="${item.price.toFixed(
+              2
+            )}">£${item.price.toFixed(2)}</div>
+        <div class="product-item__price" data-price="${item.discountedPrice.toFixed(
+          2
+        )}">£${item.discountedPrice.toFixed(2)}</div>`
       } 
       </div>
     </div>`;
+}
 
+function itemRender(first, second, third) {
+  itemsWrap.innerHTML = "";
+
+  itemCatalog.slice(first, second).forEach(item => {
+    let template = templates(item);
     itemsWrap.innerHTML += template;
   });
 
-  itemCatalog.slice(second).forEach((item, id) => {
-    let template = `
-    <div class="main__item product-item ${
-      item.hasNew ? "product-item--new" : ""
-    }">
-      <a href="item.html">
-        <div class="product-item__image">
-          <img src="${item.thumbnail}" alt="only-skinny-jeans">
-        </div>
-        <div class="product-item__desc">
-          <div class="product-item__title">${item.title}</div>
-        </div>
-      </a>
-      <div class="price__wrap">
-        ${
-          item.price === item.discountedPrice || item.discountedPrice === null
-            ? `<div class="product-item__price" data-price="${item.price}">£${item.price}</div>`
-            : `<div class="product-item__price-old" data-price="${item.price}">£${item.price}</div>
-          <div class="product-item__price" data-price="${item.discountedPrice}">£${item.discountedPrice}</div>`
-        }   
-      </div>
-    </div>`;
-
+  itemCatalog.slice(second).forEach(item => {
+    let template = templates(item);
     itemsWrap.innerHTML += template;
   });
 
   let itemBlock = null;
-
   let allItems = document.querySelectorAll(".product-item");
 
   for (let i = 0; i < allItems.length; i++) {
@@ -94,7 +84,6 @@ function itemRender(first, second) {
       itemBlock.className = "new-arrivals__block";
       itemsWrap.appendChild(itemBlock);
     }
-
     itemBlock.appendChild(allItems[i]);
   }
 
@@ -109,59 +98,60 @@ function itemRender(first, second) {
   );
 }
 
-const navLinks = document.querySelectorAll(".header__navigation a");
-const nav = document.querySelector(".navigation");
+function filtersOpen() {
+  const navLinks = document.querySelectorAll(".header__navigation a");
+  let currentTarget;
+  let booleanCounter = true;
 
-let currentTarget;
-let booleanCounter = true;
+  for (let i = 0; i < navLinks.length; i++) {
+    let filter = document.querySelector(".filters-off");
+    filter.classList.remove("filters");
 
-for (let i = 0; i < navLinks.length; i++) {
-  let filter = document.querySelector(".filters-off");
-
-  navLinks[i].addEventListener("click", e => {
-    if (booleanCounter) {
-      currentTarget = e.target;
-      currentTarget.classList.add("active");
-      filter.classList.add("filters");
-      booleanCounter = false;
-    } else if (currentTarget === e.target) {
-      currentTarget.classList.remove("active");
-      filter.classList.remove("filters");
-      booleanCounter = true;
-    } else {
-      currentTarget = e.target;
-      for (let j = 0; j < navLinks.length; j++) {
-        navLinks[j].classList.remove("active");
+    navLinks[i].addEventListener("click", e => {
+      if (booleanCounter) {
+        currentTarget = e.target;
+        currentTarget.classList.add("active");
+        filter.classList.add("filters");
+        booleanCounter = false;
+      } else if (currentTarget === e.target) {
+        currentTarget.classList.remove("active");
         filter.classList.remove("filters");
+        booleanCounter = true;
+      } else {
+        currentTarget = e.target;
+        for (let j = 0; j < navLinks.length; j++) {
+          navLinks[j].classList.remove("active");
+          filter.classList.remove("filters");
+        }
+        currentTarget.classList.add("active");
+        filter.classList.add("filters");
+        booleanCounter = false;
       }
-      currentTarget.classList.add("active");
-      filter.classList.add("filters");
-      booleanCounter = false;
-    }
-  });
-}
+    });
+  }
 
-const filters = document.querySelectorAll(".filter__drop");
+  const filters = document.querySelectorAll(".filter__drop");
 
-for (let i = 0; i < filters.length; i++) {
-  filters[i].addEventListener("click", e => {
-    let target = e.target;
-    let filter = document.querySelectorAll(".filter")[i];
-    let filterName = document.querySelectorAll(".filter__name")[i];
-    let filterStyle = document.querySelectorAll(".filter__style")[i];
+  for (let i = 0; i < filters.length; i++) {
+    filters[i].addEventListener("click", e => {
+      let target = e.target;
+      let filter = document.querySelectorAll(".filter")[i];
+      let filterName = document.querySelectorAll(".filter__name")[i];
+      let filterStyle = document.querySelectorAll(".filter__style")[i];
 
-    if (
-      target.innerHTML !== "Not selected" &&
-      target.tagName.toLowerCase() === "li"
-    ) {
-      filterName.classList.add("filter__name--active");
-      filterStyle.classList.add("filter__style--active");
-      filter.classList.add("filter--active");
-      filterStyle.innerHTML = target.innerHTML;
-    } else {
-      filterName.classList.remove("filter__name--active");
-      filterStyle.classList.remove("filter__style--active");
-      filter.classList.remove("filter--active");
-    }
-  });
+      if (
+        target.innerHTML !== "Not selected" &&
+        target.tagName.toLowerCase() === "li"
+      ) {
+        filterName.classList.add("filter__name--active");
+        filterStyle.classList.add("filter__style--active");
+        filter.classList.add("filter--active");
+        filterStyle.innerHTML = target.innerHTML;
+      } else {
+        filterName.classList.remove("filter__name--active");
+        filterStyle.classList.remove("filter__style--active");
+        filter.classList.remove("filter--active");
+      }
+    });
+  }
 }
