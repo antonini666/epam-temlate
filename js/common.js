@@ -6,3 +6,14 @@ menuBtn.addEventListener("click", () => {
   document.body.classList.toggle("overflow");
   menuBtn.classList.toggle("open");
 });
+
+const search = document.getElementById("search");
+const borderSearch = document.querySelector(".border");
+
+search.addEventListener('focus', () => {
+  borderSearch.classList.add('border--active')
+})
+
+search.addEventListener('blur', () => {
+  borderSearch.classList.remove('border--active')
+})
