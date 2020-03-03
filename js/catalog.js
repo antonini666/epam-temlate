@@ -37,7 +37,7 @@ function templates(item) {
     <div class="main__item product-item ${
       item.hasNew ? "product-item--new" : ""
     }">
-      <a href="item.html">
+      <a href="item.html" data-id=${item.id}>
         <div class="product-item__image">
           <img src="${item.thumbnail}" alt="only-skinny-jeans">
         </div>
