@@ -22,11 +22,16 @@ let itemsLocal = JSON.parse(localStorage.getItem("offer"));
 const bag = document.querySelector(".bag-amount");
 bag.innerHTML = `(${itemsLocal.length})`;
 
-const itemsLink = document.querySelectorAll(".product-item a");
+document.addEventListener("DOMContentLoaded", () => {
+  currentItem();
+});
 
-for (let i = 0; i < itemsLink.length; i++) {
-  itemsLink[i].addEventListener("click", () => {
-    let currentItemId = itemsLink[i].getAttribute("data-id");
-    localStorage.setItem("item", JSON.stringify(currentItemId));
-  });
+function currentItem() {
+  const itemsLink = document.querySelectorAll("[data-id]");
+  for (let i = 0; i < itemsLink.length; i++) {
+    itemsLink[i].addEventListener("click", () => {
+      let currentItemId = itemsLink[i].getAttribute("data-id");
+      localStorage.setItem("item", JSON.stringify(currentItemId));
+    });
+  }
 }

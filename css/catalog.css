@@ -53,11 +53,7 @@
   display: block;
 }
 .filters .filter__drop .item {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
   align-items: center;
   height: 30px;
   padding-left: 20px;
@@ -69,17 +65,13 @@
 @media screen and (min-width: 1025px) {
   .filters .filter:hover .filter__drop {
     display: block;
-    -webkit-box-shadow: 0 3px 5px rgba(0, 0, 0, 0.1);
     box-shadow: 0 3px 5px rgba(0, 0, 0, 0.1);
     border: 1px solid #e5e5e5;
     background-color: #ffffff;
-    -webkit-box-sizing: border-box;
     box-sizing: border-box;
   }
   .filters .filter:hover {
-    -webkit-box-shadow: 0 3px 5px rgba(0, 0, 0, 0.1);
     box-shadow: 0 3px 5px rgba(0, 0, 0, 0.1);
-    -webkit-box-sizing: border-box;
     box-sizing: border-box;
   }
   .filters .filter:hover .filters .filter__drop, .filters .filter:hover::before {

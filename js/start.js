@@ -105,8 +105,6 @@ function seacrhBestOffer(arr, recordArr) {
 seacrhBestOffer(bestOfferLeftId, bestOfferArrayLeft);
 seacrhBestOffer(bestOfferRightId, bestOfferArrayRight);
 
-//////////////////////////////////////////////////////////////
-
 const productSliderWrap = document.querySelectorAll(".product__slider");
 const oldCost = document.querySelector(".total-cost__old-cost");
 const newCost = document.querySelector(".total-cost__new-cost");
@@ -180,6 +178,15 @@ const renderOfferItems = (arr, num, current) => {
     });
   }
 
+  const itemsLink = document.querySelectorAll(".product__slider-item a");
+
+  for (let i = 0; i < itemsLink.length; i++) {
+    itemsLink[i].addEventListener("click", () => {
+      let currentItemId = itemsLink[i].getAttribute("data-id");
+      localStorage.setItem("item", JSON.stringify(currentItemId));
+    });
+  }
+
   oldCost.innerHTML = `£${currentOldPrice.toFixed(2)}`;
   newCost.innerHTML = `£${(currentOldPrice - bestOffer.discount).toFixed(2)}`;
 };
@@ -221,7 +228,6 @@ const slider = () => {
 
     buttonSilderUp[i].addEventListener("click", () => {
       slideInfo(i, nextSlide);
-      console.log(i);
     });
 
     buttonSilderDown[i].addEventListener("click", () => {

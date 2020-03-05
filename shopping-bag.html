@@ -52,13 +52,41 @@
 
     <div class="section-back">
       <div class="container">
-        <h3>Shopping bag</h3>
+        <h3 class="section-back__title">Shopping bag</h3>
       </div>
       <hr>
     </div>
 
 
+    <section class="bag-items">
+      <div class="container">
+        <div class="bag-items__wrap">
+          <div class="bag-items__item product-item--new">
+            <a href="item.html">
+              <div class="bag-items__image product-item__image">
+                <img src="../img/only-skinny-jeans/only-skinny-jeans.png" alt="only-skinny-jeans">
+              </div>
+            </a>
+            <div class="bag-items__info">
+              <div class="bag-items__title product-item__title">Only Skinny Jeans</div>
+              <div class="bag-items__price">£65.50</div>
+              <div class="bag-items__custom-wrap">
+                <div class="bag-items__color">Color: Phillipa wash</div>
+                <div class="bag-items__size">Size: UK 17</div>
+                <div class="bag-items__quantity">Quantity:
+                  <button class="bag-items__quantity-btn minus-btn"></button>
+                  <span>1</span>
+                  <button class="bag-items__quantity-btn plus-btn"></button>
+                </div>
+              </div>
+              <button class="bag-items__btn-remove">Remove item</button>
+            </div>
+          </div>
 
+         
+        </div>
+      </div>
+    </section>
 
 
 
@@ -66,6 +94,7 @@
 
 
     <footer class="footer">
+      <hr>
       <div class="container">
         <div class="footer__content">
           <div class="footer__links">
@@ -154,7 +183,7 @@
 
     </footer>
 
-    
+    <script src="data/catalog.js"></script>
     <script src="js/shopping-bag.js"></script>
     <script src="js/common.js"></script>
   </body>

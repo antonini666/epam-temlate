@@ -1,3 +1,5 @@
+document.addEventListener("DOMContentLoaded", itemRender());
+
 function itemRender() {
   const catalog = window.catalog;
   const sectionBack = document.querySelector(".section-back");
@@ -6,8 +8,6 @@ function itemRender() {
   currentItem = catalog.filter(i => {
     i.id === JSON.parse(localStorage.getItem("item")) ? (item = i) : "";
   });
-
-  console.log(item.preview);
 
   let template = `
       <div class="full-item">
@@ -34,8 +34,12 @@ function itemRender() {
             </div>
             <div class="full-item__info">
               <div class="full-item__title">${item.title}</div>
-              <p class="full-item__desc">${item.description ? item.description : 'No description'}</p>
-              <p class="full-item__price">£${item.price.toFixed(2)}</p>
+              <div class="full-item__flex">
+                <p class="full-item__desc">${
+                  item.description ? item.description : "No description"
+                }</p>
+                <p class="full-item__price">£${item.price.toFixed(2)}</p>
+              </div>
               <div class="full-item__sizes full-item__blocks">
                 <span class="name">Size:</span>
                 ${item.sizes
@@ -56,7 +60,9 @@ function itemRender() {
                   })
                   .join("")}
               </div>
-              <button class="full-item__add-btn main-btn">Add to bag</button>
+              <button class="full-item__add-btn main-btn" data-id=${
+                item.id
+              }>Add to bag</button>
             </div>
           </div>
         </div>
@@ -64,8 +70,6 @@ function itemRender() {
 
   sectionBack.insertAdjacentHTML("afterend", template);
 }
-
-itemRender();
 
 const dots = document.querySelectorAll(".thumbnail");
 
@@ -84,7 +88,6 @@ function currentSlide(n) {
 }
 
 function showSlides(n) {
-  let i;
   let slides = document.querySelectorAll(".full-image");
   if (n > slides.length) {
     slideIndex = 1;
