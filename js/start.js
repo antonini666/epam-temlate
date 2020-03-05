@@ -43,7 +43,7 @@ function itemRender(first, second) {
     <div class="new-arrivals__item product-item ${
       item.hasNew ? "product-item--new" : ""
     }">
-      <a href="item.html">
+      <a href="item.html" data-id=${item.id}>
         <div class="product-item__image">
           <img src="${item.thumbnail}" alt="only-skinny-jeans">
         </div>
@@ -105,11 +105,13 @@ function seacrhBestOffer(arr, recordArr) {
 seacrhBestOffer(bestOfferLeftId, bestOfferArrayLeft);
 seacrhBestOffer(bestOfferRightId, bestOfferArrayRight);
 
-//////////////////////////////////////////////////////////////
-
 const productSliderWrap = document.querySelectorAll(".product__slider");
 const oldCost = document.querySelector(".total-cost__old-cost");
 const newCost = document.querySelector(".total-cost__new-cost");
+
+const customOffer = [];
+customOffer[0] = bestOfferLeftId[0];
+customOffer[1] = bestOfferRightId[0];
 
 const renderOfferItems = (arr, num, current) => {
   let currentSlide = 0;
@@ -120,6 +122,7 @@ const renderOfferItems = (arr, num, current) => {
     productSliderWrap[newNum].innerHTML = "";
     for (let j = 0; j < arr[newNum].length; j++) {
       let obj = arr[newNum][j];
+
       productSliderWrap[newNum].innerHTML += `
       <div class="product__slider-item product-item ${
         obj.hasNew ? "product-item--new" : ""
@@ -127,8 +130,8 @@ const renderOfferItems = (arr, num, current) => {
         j !== (!isNaN(current) ? current : currentSlide)
           ? "product__slider-item--hide"
           : ""
-      }">
-      <a href="item.html">
+      }" >
+      <a href="item.html" data-id=${obj.id}>
         <div class="product-item__image">
           <img src="${obj.thumbnail}" alt="${obj.title}">
         </div>
@@ -154,9 +157,10 @@ const renderOfferItems = (arr, num, current) => {
     </div>`;
     }
 
-    let productItem = productSliderWrap[i].querySelectorAll(
+    const productItem = productSliderWrap[i].querySelectorAll(
       ".product__slider-item"
     );
+    const btnBuy = document.querySelector(".best-offer__btn-add");
 
     for (let d = 0; d < productItem.length; d++) {
       if (!productItem[d].classList.contains("product__slider-item--hide")) {
@@ -165,6 +169,22 @@ const renderOfferItems = (arr, num, current) => {
           .innerHTML.slice(1);
       }
     }
+
+    btnBuy.addEventListener("click", () => {
+      localStorage.setItem("offer", JSON.stringify(customOffer));
+      let itemsLocal = JSON.parse(localStorage.getItem("offer"));
+      const bag = document.querySelector(".bag-amount");
+      bag.innerHTML = `(${itemsLocal.length})`;
+    });
+  }
+
+  const itemsLink = document.querySelectorAll(".product__slider-item a");
+
+  for (let i = 0; i < itemsLink.length; i++) {
+    itemsLink[i].addEventListener("click", () => {
+      let currentItemId = itemsLink[i].getAttribute("data-id");
+      localStorage.setItem("item", JSON.stringify(currentItemId));
+    });
   }
 
   oldCost.innerHTML = `£${currentOldPrice.toFixed(2)}`;
@@ -195,24 +215,23 @@ const slider = () => {
       currArr[i] = (n + slides.length) % slides.length;
     }
 
-    buttonSilderUp[i].addEventListener("click", () => {
-      let number = i;
-      nextSlide();
+    function slideInfo(num, func) {
+      let number = num;
+      customOffer[number] = bestOfferLeftId[currArr[i]];
+      func();
       renderOfferItems(
         [bestOfferArrayLeft, bestOfferArrayRight],
         number,
         currArr[i]
       );
+    }
+
+    buttonSilderUp[i].addEventListener("click", () => {
+      slideInfo(i, nextSlide);
     });
 
     buttonSilderDown[i].addEventListener("click", () => {
-      let number = i;
-      previousSlide();
-      renderOfferItems(
-        [bestOfferArrayLeft, bestOfferArrayRight],
-        number,
-        currArr[i]
-      );
+      slideInfo(i, previousSlide);
     });
   }
 };
