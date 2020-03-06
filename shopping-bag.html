@@ -20,7 +20,7 @@
             <a href="#" class="sing-up">E-mail sing up</p></a>
             <a href="shopping-bag.html" class="bag">
               <img src="img/icons/ico_bag.jpg" alt="icon-bag">
-              <div>Bag<span class="bag-amount">(0)</span></div>
+              <div>Bag<span class="bag-price"></span>(<span class="bag-amount">0</span>)</div>
             </a>
           </div>
           <div class="menu">
@@ -57,41 +57,35 @@
       <hr>
     </div>
 
-
     <section class="bag-items">
       <div class="container">
         <div class="bag-items__wrap">
-          <div class="bag-items__item product-item--new">
-            <a href="item.html">
-              <div class="bag-items__image product-item__image">
-                <img src="../img/only-skinny-jeans/only-skinny-jeans.png" alt="only-skinny-jeans">
-              </div>
-            </a>
-            <div class="bag-items__info">
-              <div class="bag-items__title product-item__title">Only Skinny Jeans</div>
-              <div class="bag-items__price">£65.50</div>
-              <div class="bag-items__custom-wrap">
-                <div class="bag-items__color">Color: Phillipa wash</div>
-                <div class="bag-items__size">Size: UK 17</div>
-                <div class="bag-items__quantity">Quantity:
-                  <button class="bag-items__quantity-btn minus-btn"></button>
-                  <span>1</span>
-                  <button class="bag-items__quantity-btn plus-btn"></button>
-                </div>
-              </div>
-              <button class="bag-items__btn-remove">Remove item</button>
-            </div>
-          </div>
-
-         
         </div>
       </div>
     </section>
 
+    <div class="free-delivery">
+      <hr>
+      <div class="container">
+        <div class="free-delivery__info">
+          You've qualified for Free UK Next Day Delivery on your order. Don't forget to enter the
+          code&nbsp; <span>nexday</span> &nbsp;at checkout
+        </div>
+      </div>
+    </div>
 
-
-
-
+    <section class="checkout">
+      <div class="container">
+        <div class="checkout__wrap">
+          <button class="checkout__empty-bag">Empty bag</button>
+          <button class="checkout__btn main-btn">Checkout</button>
+          <div class="checkout__price">
+            <div class="checkout__price-discount">Applied discount: <span>0</span></div>
+            <div class="checkout__price-total">Total price: <span>0</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
 
     <footer class="footer">
       <hr>
@@ -183,7 +177,7 @@
 
     </footer>
 
-    <script src="data/catalog.js"></script>
+    <script src="data/best-offer.js"></script>
     <script src="js/shopping-bag.js"></script>
     <script src="js/common.js"></script>
   </body>

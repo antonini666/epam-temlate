@@ -91,9 +91,9 @@ window.catalog = [
     sizes: ["UK 18"],
     thumbnail: "../img/levis-jeans-for-women/levis-jeans-for-women.png",
     preview: [
-      "../img/levis-jeans-for-women/preview/levis-jeans-for-women-1.webp",
-      "../img/levis-jeans-for-women/preview/levis-jeans-for-women-2.webp",
-      "../img/levis-jeans-for-women/preview/levis-jeans-for-women-3.webp"
+      "../img/levis-jeans-for-women/preview/levis-jeans-for-women-1.png",
+      "../img/levis-jeans-for-women/preview/levis-jeans-for-women-2.png",
+      "../img/levis-jeans-for-women/preview/levis-jeans-for-women-3.png"
     ]
   },
   {
@@ -165,8 +165,8 @@ window.catalog = [
     hasNew: true,
     category: "women",
     fashion: "Casual style",
-    colors: ["Phillipa wash"],
-    sizes: ["UK 17"],
+    colors: ["Phillipa wash", "Green", "Blue"],
+    sizes: ["UK 17", "UK 19", "UK 21"],
     thumbnail: "../img/only-skinny-jeans/only-skinny-jeans.png",
     preview: [
       "../img/only-skinny-jeans/preview/only-skinny-jeans-1.jpg",
